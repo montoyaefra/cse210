@@ -1,52 +1,38 @@
 using System;
-using System.Collections.Generic;
 
 class Program
 {
     static void Main(string[] args)
     {
-        List<int> numbers = new List<int>();
-        
-        int userNumber = -1;
+        int sum = 0;
+        int count = 0;
+        int max = int.MinValue;
 
-        while (userNumber != 0)
-        
+        while (true)
         {
             Console.Write("Enter a number (0 to quit): ");
-            
-            string userResponse = Console.ReadLine();
-            
-            userNumber = int.Parse(userResponse);
-            
-            if (userNumber != 0)
-            {
-                numbers.Add(userNumber);
-            }
-        }
+            string userInput = Console.ReadLine();
+            int number = int.Parse(userInput);
 
-        int sum = 0;
+            if (number == 0)
+                break;
 
-        foreach (int number in numbers)
-        {
             sum += number;
+            count++;
+            max = Math.Max(max, number);
         }
 
-        Console.WriteLine($"The sum is: {sum}");
-
-        float average = ((float)sum) / numbers.Count;
-
-        Console.WriteLine($"The average is: {average}");
-        
-        int max = numbers[0];
-
-        foreach (int number in numbers)
+        if (count == 0)
         {
-            if (number > max)
-            {
-                max = number;
-            }
+            Console.WriteLine("No numbers were entered.");
         }
+        else
+        {
+            float average = (float)sum / count;
 
-        Console.WriteLine($"The max is: {max}");
+            Console.WriteLine($"The sum is: {sum}");
+            Console.WriteLine($"The average is: {average}");
+            Console.WriteLine($"The max is: {max}");
+        }
     }
 }
