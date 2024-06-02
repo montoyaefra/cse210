@@ -1,0 +1,300 @@
+Program 1: YouTube Videos
+Class Diagram
+Video
+
+Attributes:
+string title
+string author
+int lengthInSeconds
+List<Comment> comments
+Methods:
+int GetNumberOfComments()
+Comment
+
+Attributes:
+string commenterName
+string commentText
+Methods:
+None
+
+
+Class Diagram Description
+
+------------------
+|      Video      |
+------------------
+| - title: string  |
+| - author: string |
+| - lengthInSeconds: int |
+| - comments: List<Comment> |
+------------------
+|  GetNumberOfComments(): int |
+------------------
+
+--------------------
+|      Comment      |
+--------------------
+| - commenterName: string |
+| - commentText: string   |
+--------------------
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Program 2: Online Ordering
+Class Diagram
+Order
+
+Attributes:
+List<Product> products
+Customer customer
+Methods:
+double CalculateTotalCost()
+string GetPackingLabel()
+string GetShippingLabel()
+Product
+
+Attributes:
+string name
+string productId
+double price
+int quantity
+Methods:
+double GetTotalCost()
+Customer
+
+Attributes:
+string name
+Address address
+Methods:
+bool IsInUSA()
+Address
+
+Attributes:
+string street
+string city
+string stateOrProvince
+string country
+Methods:
+bool IsInUSA()
+string GetFullAddress()
+
+
+Class Diagram Description
+
+-----------------------
+|         Order        |
+-----------------------
+| - products: List<Product> |
+| - customer: Customer  |
+-----------------------
+| + CalculateTotalCost(): double |
+| + GetPackingLabel(): string    |
+| + GetShippingLabel(): string   |
+-----------------------
+
+-----------------------
+|        Product       |
+-----------------------
+| - name: string        |
+| - productId: string   |
+| - price: double       |
+| - quantity: int       |
+-----------------------
+|  GetTotalCost(): double |
+-----------------------
+
+-----------------------
+|       Customer        |
+-----------------------
+| - name: string        |
+| - address: Address    |
+-----------------------
+|  IsInUSA(): bool    |
+-----------------------
+
+-----------------------
+|        Address       |
+-----------------------
+| - street: string      |
+| - city: string        |
+| - stateOrProvince: string |
+| - country: string     |
+-----------------------
+| IsInUSA(): bool     |
+| GetFullAddress(): string |
+-----------------------
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Program 3: Event Planning
+Class Diagram
+Event (Base Class)
+
+Attributes:
+string title
+string description
+DateTime date
+DateTime time
+Address address
+Methods:
+string GetStandardDetails()
+string GetFullDetails()
+string GetShortDescription()
+Lecture (Derived from Event)
+
+Attributes:
+string speakerName
+int capacity
+Methods:
+None
+Reception (Derived from Event)
+
+Attributes:
+string rsvpEmail
+Methods:
+None
+OutdoorGathering (Derived from Event)
+
+Attributes:
+string weatherForecast
+Methods:
+None
+Address
+
+Attributes:
+string street
+string city
+string stateOrProvince
+string country
+Methods:
+string GetFullAddress()
+
+
+Class Diagram Description
+
+-------------------------
+|         Event           |
+-------------------------              
+| - title: string         |
+| - description: string   |
+| - date: DateTime        |
+| - time: DateTime        |
+| - address: Address      |
++-------------------------
+| + GetStandardDetails(): string |
+| + GetFullDetails(): string     |
+| + GetShortDescription(): string |
++-------------------------
+              ^
+              |
+--------------------------
+|                           |
+|                           |
+--------------------------------------------------
+|     Lecture     |         |      Reception       |
+-----------------             ----------------------
+| - speakerName: string     | - rsvpEmail: string  |
+| - capacity: int           |                      |
++-----------------        ----------------------
+                            |
+                            ----------------------
+                            |  OutdoorGathering    |
+                            ----------------------
+                            | - weatherForecast: string |
+                            ----------------------
+
+------------------------
+|        Address         |
+------------------------
+| - street: string       |
+| - city: string         |
+| - stateOrProvince: string |
+| - country: string      |
+------------------------
+|  GetFullAddress(): string |
+------------------------
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Program 4: Exercise Tracking
+Class Diagram
+Activity (Base Class)
+
+Attributes:
+DateTime date
+int lengthInMinutes
+Methods:
+virtual double GetDistance()
+virtual double GetSpeed()
+virtual double GetPace()
+virtual string GetSummary()
+Running (Derived from Activity)
+
+Attributes:
+double distance
+Methods:
+override double GetDistance()
+override double GetSpeed()
+override double GetPace()
+override string GetSummary()
+Cycling (Derived from Activity)
+
+Attributes:
+double speed
+Methods:
+override double GetDistance()
+override double GetSpeed()
+override double GetPace()
+override string GetSummary()
+Swimming (Derived from Activity)
+
+Attributes:
+int numberOfLaps
+Methods:
+override double GetDistance()
+override double GetSpeed()
+override double GetPace()
+override string GetSummary()
+
+
+Class Diagram Description
+
+---------------------------
+|         Activity          |
+---------------------------
+| - date: DateTime          |
+| - lengthInMinutes: int    |
+---------------------------
+|  GetDistance(): double   |
+|  GetSpeed(): double      |
+|  GetPace(): double       |
+|  GetSummary(): string    |
+--------------------------
+              ^
+              |
+--------------------------
+|                           |
+|                           |
+-----------------        -----------------
+|     Running     |         |     Cycling     |
+-----------------        -----------------
+| - distance: double        | - speed: double |
+-----------------         -----------------
+|  GetDistance(): double   |  GetDistance(): double   |
+|  GetSpeed(): double      |  GetSpeed(): double      |
+|  GetPace(): double       |  GetPace(): double       |
+|  GetSummary(): string    |  GetSummary(): string    |
+-----------------         -----------------
+              |
+--------------------------
+|     Swimming               |
+----------------------------
+| - numberOfLaps: int        |
+----------------------------
+|  GetDistance(): double    |
+|  GetSpeed(): double       |
+|  GetPace(): double        |
+|  GetSummary(): string     |
+----------------------------
