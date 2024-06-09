@@ -7,102 +7,174 @@ namespace OnlineOrdering
     // Address class
     public class Address
     {
-        public string StreetAddress { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Country { get; set; }
+        private string _streetAddress;
+        private string _city;
+        private string _state;
+        private string _country;
 
         public Address(string streetAddress, string city, string state, string country)
         {
-            StreetAddress = streetAddress;
-            City = city;
-            State = state;
-            Country = country;
+            _streetAddress = streetAddress;
+            _city = city;
+            _state = state;
+            _country = country;
+        }
+
+        public string StreetAddress
+        {
+            get { return _streetAddress; }
+            set { _streetAddress = value; }
+        }
+
+        public string City
+        {
+            get { return _city; }
+            set { _city = value; }
+        }
+
+        public string State
+        {
+            get { return _state; }
+            set { _state = value; }
+        }
+
+        public string Country
+        {
+            get { return _country; }
+            set { _country = value; }
         }
 
         public bool IsInUSA()
         {
-            return Country.ToLower() == "usa";
+            return _country.ToLower() == "usa";
         }
 
         public string GetFullAddress()
         {
-            return $"{StreetAddress}\n{City}, {State}\n{Country}";
+            return $"{_streetAddress}\n{_city}, {_state}\n{_country}";
         }
     }
 
     // Customer class
     public class Customer
     {
-        public string Name { get; set; }
-        public Address Address { get; set; }
+        private string _name;
+        private Address _address;
 
         public Customer(string name, Address address)
         {
-            Name = name;
-            Address = address;
+            _name = name;
+            _address = address;
+        }
+
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        public Address Address
+        {
+            get { return _address; }
+            set { _address = value; }
         }
 
         public bool IsInUSA()
         {
-            return Address.IsInUSA();
+            return _address.IsInUSA();
         }
     }
 
     // Product class
     public class Product
     {
-        public string Name { get; set; }
-        public string ProductID { get; set; }
-        public decimal Price { get; set; }
-        public int Quantity { get; set; }
+        private string _name;
+        private string _productID;
+        private decimal _price;
+        private int _quantity;
 
         public Product(string name, string productID, decimal price, int quantity)
         {
-            Name = name;
-            ProductID = productID;
-            Price = price;
-            Quantity = quantity;
+            _name = name;
+            _productID = productID;
+            _price = price;
+            _quantity = quantity;
+        }
+
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        public string ProductID
+        {
+            get { return _productID; }
+            set { _productID = value; }
+        }
+
+        public decimal Price
+        {
+            get { return _price; }
+            set { _price = value; }
+        }
+
+        public int Quantity
+        {
+            get { return _quantity; }
+            set { _quantity = value; }
         }
 
         public decimal GetTotalCost()
         {
-            return Price * Quantity;
+            return _price * _quantity;
         }
     }
 
     // Order class
     public class Order
     {
-        public List<Product> Products { get; set; }
-        public Customer Customer { get; set; }
+        private List<Product> _products;
+        private Customer _customer;
 
         public Order(Customer customer)
         {
-            Customer = customer;
-            Products = new List<Product>();
+            _customer = customer;
+            _products = new List<Product>();
+        }
+
+        public List<Product> Products
+        {
+            get { return _products; }
+            set { _products = value; }
+        }
+
+        public Customer Customer
+        {
+            get { return _customer; }
+            set { _customer = value; }
         }
 
         public void AddProduct(Product product)
         {
-            Products.Add(product);
+            _products.Add(product);
         }
 
         public decimal GetTotalCost()
         {
             decimal totalCost = 0;
-            foreach (var product in Products)
+            foreach (var product in _products)
             {
                 totalCost += product.GetTotalCost();
             }
-            totalCost += Customer.IsInUSA() ? 5 : 35; // Shipping cost
+            totalCost += _customer.IsInUSA() ? 5 : 35; // Shipping cost
             return totalCost;
         }
 
         public string GetPackingLabel()
         {
             StringBuilder packingLabel = new StringBuilder();
-            foreach (var product in Products)
+            foreach (var product in _products)
             {
                 packingLabel.AppendLine($"{product.Name} ({product.ProductID})");
             }
@@ -111,7 +183,7 @@ namespace OnlineOrdering
 
         public string GetShippingLabel()
         {
-            return $"{Customer.Name}\n{Customer.Address.GetFullAddress()}";
+            return $"{_customer.Name}\n{_customer.Address.GetFullAddress()}";
         }
     }
 
